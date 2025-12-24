@@ -20,7 +20,7 @@ export function QuestionPage() {
       <FloatingBackground images={imagesArray} />
       <div className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden p-4">
         {/* Pergunta */}
-        <h1 className="z-10 text-3xl md:text-5xl font-bold text-center mb-12 text-zinc-200">
+        <h1 className="z-10 text-5xl md:text-5xl font-bold text-center mb-12 text-zinc-200">
           {question}
         </h1>
 
@@ -54,7 +54,7 @@ export function QuestionPage() {
                       transition: "all 0.2s ease-out",
                     }
               }
-              className="w-24 h-12 bg-red-800 text-zinc-200 px-8 py-3 rounded-lg font-bold shadow-sm"
+              className="w-24 h-12 bg-red-800 text-zinc-200 px-8 py-3 rounded-lg font-bold shadow-sm z-10"
             >
               Não
             </button>
