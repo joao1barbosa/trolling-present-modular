@@ -4,15 +4,16 @@ interface VideoResponseProps {
 
 export function VideoResponse({ value }: VideoResponseProps) {
   const getVideoPath = () => {
-    const videos = import.meta.glob("/public/response/*.{mp4,webm,ogg}", {
-      eager: true,
-    });
+    const videos: Record<string, any> = import.meta.glob(
+      "/src/assets/response/*.{mp4,webm,ogg}",
+      { eager: true }
+    );
 
-    const videosArray = Object.keys(videos);
+    const values = Object.values(videos);
 
-    if (videosArray.length === 0) return null;
+    if (values.length === 0) return null;
 
-    return videosArray[0].replace("/public", "");
+    return values[0].default;
   };
 
   const videoSrc = getVideoPath();

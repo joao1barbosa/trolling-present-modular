@@ -4,17 +4,15 @@ interface ImageResponseProps {
 
 export function ImageResponse({ value }: ImageResponseProps) {
   const getImagePath = () => {
-    const images: object = import.meta.glob(
-      "/public/response/*.{png,jpg,jpeg,SVG,webp}",
+    const images: Record<string, any> = import.meta.glob(
+      "/src/assets/response/*.{png,jpg,jpeg,SVG,webp}",
       { eager: true }
     );
+    const values = Object.values(images);
 
-    const imagesArray = Object.keys(images);
+    if (values.length === 0) return "/src/assets/photos/error.png";
 
-    if (imagesArray.length === 0) return "photos/error.png";
-
-    // retorna o caminho final da imagem
-    return imagesArray[0].replace("/public", "");
+    return values[0].default;
   };
 
   return (

@@ -9,23 +9,19 @@ interface FloatingItem {
   isVisible: boolean;
 }
 
-interface FloatingBackgroundProps {
-  images: string[];
-}
-
 export function FloatingBackground() {
   const [items, setItems] = useState<FloatingItem[]>([]);
   const idCounter = useRef(0);
 
     const getImagesPath = () => {
-      const imageModules = import.meta.glob(
-        "/public/question/photos/*.{png,jpg,jpeg,SVG,webp}",
+      // 1. O caminho agora aponta para src/assets
+      const imageModules: Record<string, { default: string }> = import.meta.glob(
+        "/src/assets/question/photos/*.{png,jpg,jpeg,SVG,webp}",
         { eager: true }
       );
-      return Object.keys(imageModules).map((path) =>
-        path.replace("/public", "")
-      );
-    }
+      
+      return Object.values(imageModules).map((mod) => mod.default);
+    };
 
   useEffect(() => {
     const images = getImagesPath();
